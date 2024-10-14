@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { isAuthenticatedGuard } from './auth/guards/is-authenticated.guard';
 
 const routes: Routes = [
 
@@ -8,14 +9,15 @@ const routes: Routes = [
     path: 'auth',
     //guards
 
-    loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
 
   },
 
   {
     path: 'dashboard',
     //guards
-    loadChildren: () => import('./dashboard/dashboard-routing.module').then(m => DashboardRoutingModule)
+    canActivate: [isAuthenticatedGuard],
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => DashboardModule)
   },
 
   {

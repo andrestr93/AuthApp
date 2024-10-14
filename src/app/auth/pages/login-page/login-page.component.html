@@ -1,6 +1,3 @@
-<p>esto es el login page</p>
-
-<!--
 <form
   (ngSubmit)="login()"
   [formGroup]="myForm"
@@ -36,7 +33,13 @@
   <div class="container-login100-form-btn">
     <div class="wrap-login100-form-btn">
       <div class="login100-form-bgbtn"></div>
-      <button class="login100-form-btn" type="submit">Login</button>
+      <button
+        [disabled]="myForm.invalid"
+        class="login100-form-btn"
+        type="submit"
+      >
+        Login
+      </button>
     </div>
   </div>
 
@@ -46,5 +49,3 @@
     <a routerLink="/auth/register" class="txt2"> Crear una aquí </a>
   </div>
 </form>
-
--->
